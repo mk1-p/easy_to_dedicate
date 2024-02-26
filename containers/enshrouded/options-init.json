@@ -14,7 +14,7 @@
       "15636/udp": [{ "HostPort": "15636" }],
       "15637/udp": [{ "HostPort": "15637" }]
     },
-    "Binds": ["${PROJ_PATH}/containers/enshrouded/server:/opt/enshrouded"],
+    "Binds": ["${PROJ_PATH}/containers/enshrouded/server:/opt/enshrouded/"],
     "StopTimeout": 90
   },
   "Env": [
