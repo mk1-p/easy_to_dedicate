@@ -1,0 +1,37 @@
+{
+  "Image": "thijsvanloef/palworld-server-docker:latest",
+  "RestartPolicy": { "Name": "unless-stopped" },
+  "name": "palworld",
+  "ExposedPorts": {
+    "27015/udp": {},
+    "8211/udp": {}
+  },
+  "HostConfig": {
+    "AutoRemove": true,
+    "StopTimeout": 30,
+    "PortBindings": {
+      "8211/udp": [{ "HostPort": "8211" }],
+      "27015/udp": [{ "HostPort": "27015" }]
+    },
+    "Binds": ["${PROJ_PATH}/containers/palworld/server:/palworld/"]
+  },
+  "Env": [
+    "TZ=UTC",
+    "PORT=8211",
+    "PUID=1000",
+    "PGID=1000",
+    "MULTITHREADING=false",
+    "COMMUNITY=false",
+    "BACKUP_ENABLED=false",
+    "DELETE_OLD_BACKUPS=false",
+    "OLD_BACKUP_DAYS=30",
+    "BACKUP_CRON_EXPRESSION=0 0 * * *",
+    "AUTO_UPDATE_ENABLED=false",
+    "AUTO_UPDATE_CRON_EXPRESSION=0 * * * *",
+    "AUTO_UPDATE_WARN_MINUTES=30",
+    "AUTO_REBOOT_ENABLED=false",
+    "AUTO_REBOOT_WARN_MINUTES=5",
+    "AUTO_REBOOT_CRON_EXPRESSION=0 0 * * *"
+  ]
+}
+

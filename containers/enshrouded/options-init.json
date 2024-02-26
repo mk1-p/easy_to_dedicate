@@ -1,0 +1,28 @@
+{
+  "name": "enshrouded",
+  "Image": "mornedhels/enshrouded-server:latest",
+  "Hostname": "enshrouded",
+  "ExposedPorts": {
+    "15636/udp": {},
+    "15637/udp": {}
+  },
+  "HostConfig": {
+    "RestartPolicy": {
+      "Name": "unless-stopped"
+    },
+    "PortBindings": {
+      "15636/udp": [{ "HostPort": "15636" }],
+      "15637/udp": [{ "HostPort": "15637" }]
+    },
+    "Binds": ["${PROJ_PATH}/containers/enshrouded/server:/opt/enshrouded"],
+    "StopTimeout": 90
+  },
+  "Env": [
+    "UPDATE_CRON=*/30 * * * *",
+    "PUID=4711",
+    "PGID=4711",
+    "SERVER_PORT=15636",
+    "SERVER_QUERYPORT=15637",
+    "SERVER_IP=0.0.0.0"
+  ]
+}

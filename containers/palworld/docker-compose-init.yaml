@@ -1,0 +1,20 @@
+services:
+  palworld:
+    image: thijsvanloef/palworld-server-docker:latest
+    restart: unless-stopped
+    container_name: palworld
+    stop_grace_period: 30s # Set to however long you are willing to wait for the container to gracefully stop
+    ports:
+      - 8211:8211/udp
+      - 27015:27015/udp
+    volumes:
+      - ${PROJ_PATH}/containers/palworld/server:/palworld/
+    env_file:
+      - /usr/src/app/containers/palworld/.env.custom
+    networks:
+      - easy_to_dedicate_default
+
+networks:
+  easy_to_dedicate_default:
+    name: easy_to_dedicate_default
+    external: true

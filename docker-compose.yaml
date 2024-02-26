@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  api:
+    container_name: api
+    image: mk1dev662/etd-api-server:amd64
+    ports:
+      - "80:3000"
+    environment:
+      - PROJ_PATH=${PROJ_PATH}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./containers:/usr/src/app/containers
+    networks:
+      - easy_to_dedicate_default
+
+#volumes:
+#  easy_to_dedicate_volume:
+#    name: easy_to_dedicate_volume
+#    driver_opts:
+#      type: none
+#      device: ${PWD}/containers
+#      o: bind
+
+
+
+networks:
+  easy_to_dedicate_default:
+    name: easy_to_dedicate_default
+    driver: bridge
