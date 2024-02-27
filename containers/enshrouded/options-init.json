@@ -18,11 +18,8 @@
     "StopTimeout": 90
   },
   "Env": [
-    "UPDATE_CRON=*/30 * * * *",
-    "PUID=4711",
-    "PGID=4711",
-    "SERVER_PORT=15636",
-    "SERVER_QUERYPORT=15637",
+    "GAME_PORT=15636",
+    "QUERY_PORT=15637",
     "SERVER_IP=0.0.0.0"
   ]
 }
