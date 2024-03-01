@@ -1,25 +1,25 @@
 {
+  "Image": "mornedhels/enshrouded-server:latest",
+  "RestartPolicy": { "Name": "unless-stopped" },
   "name": "enshrouded",
-  "Image": "sknnr/enshrouded-dedicated-server:v2.0.5",
-  "Hostname": "enshrouded",
   "ExposedPorts": {
     "15636/udp": {},
     "15637/udp": {}
   },
   "HostConfig": {
-    "RestartPolicy": {
-      "Name": "unless-stopped"
-    },
+    "AutoRemove": true,
+    "StopTimeout": 90,
     "PortBindings": {
       "15636/udp": [{ "HostPort": "15636" }],
       "15637/udp": [{ "HostPort": "15637" }]
     },
-    "Binds": ["${PROJ_PATH}/containers/enshrouded/server:/home/steam/enshrouded/"],
-    "StopTimeout": 90
+    "Binds": ["${PROJ_PATH}/containers/enshrouded/server:/opt/enshrouded"]
   },
   "Env": [
-    "GAME_PORT=15636",
-    "QUERY_PORT=15637",
-    "SERVER_IP=0.0.0.0"
+    "SERVER_PORT=15636",
+    "SERVER_QUERYPORT=15637",
+    "SERVER_IP=0.0.0.0",
+    "PUID=4711",
+    "PGID=4711"
   ]
 }
